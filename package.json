@@ -2,7 +2,7 @@
   "name": "@mantha/webpack-component-loader",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/loader.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
