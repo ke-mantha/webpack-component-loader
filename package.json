@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "pretest": "npm run build",
     "preversion": "npm run build",
     "patch": "npm version patch",
