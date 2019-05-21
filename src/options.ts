@@ -1,5 +1,11 @@
 import validateSchemaOptions from 'schema-utils';
-import { getOptions } from 'loader-utils';
+import { getOptions, OptionObject } from 'loader-utils';
+
+export type SchemaKeys = keyof typeof schema['properties'];
+
+export type Options = {
+  [key in SchemaKeys]: string;
+};
 
 export const schema = {
   type: 'object',
@@ -20,8 +26,8 @@ export const schema = {
 };
 
 export function validateOptions(errorMsg: string) {
-  const options = getOptions(this);
-  
+  const options = getOptions(this) as Options & OptionObject;
+
   validateSchemaOptions(schema, options, errorMsg);
 
   return options;
