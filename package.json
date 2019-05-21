@@ -1,0 +1,67 @@
+{
+  "name": "@mantha/webpack-component-loader",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "test": "jest",
+    "pretest": "npm run build",
+    "preversion": "npm run build",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ke-mantha/webpack-component-loader.git"
+  },
+  "author": "kaskar2008",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ke-mantha/webpack-component-loader/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "@types/loader-utils": "^1.1.3",
+    "@types/node": "^11.13.11",
+    "jest": "^24.8.0",
+    "loader-utils": "^1.2.3",
+    "memory-fs": "^0.4.1",
+    "null-loader": "^2.0.0",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "rimraf": "^2.6.3",
+    "schema-utils": "^1.0.0",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.1",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5",
+    "vue-template-compiler": "^2.6.10",
+    "vue-template-loader": "^1.0.0",
+    "webpack": "^4.32.0"
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.test.json"
+      }
+    },
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
+  "homepage": "https://github.com/ke-mantha/webpack-component-loader#readme"
+}
