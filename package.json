@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "jest --detectOpenHandles",
     "pretest": "npm run build",
-    "preversion": "npm run build",
+    "preversion": "npm run test",
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major"
