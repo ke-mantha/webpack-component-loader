@@ -5,8 +5,7 @@ import { loader } from 'webpack';
 import { optionsWithDefaults } from './defaults';
 
 import {
-  importRenderDeclaration,
-  importStyleDeclaration,
+  declareImport,
   createFile,
   printer,
   findDefaultExport,
@@ -21,7 +20,7 @@ export default function (this: loader.LoaderContext, source: string) {
   const { viewFileName, styleFileName } = optionsWithDefaults(options);
   const importStatements = generateImportDeclarations(
     [styleFileName, viewFileName],
-    [importStyleDeclaration, importRenderDeclaration],
+    [declareImport(), declareImport('render')],
     fileExists
   );
 

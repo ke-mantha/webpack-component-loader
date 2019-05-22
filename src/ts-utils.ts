@@ -27,24 +27,17 @@ export const literal = (...args: Parameters<typeof createLiteral>) => {
 
 export type ImportFactory = (filename: string) => ImportDeclaration;
 
-export const importRenderDeclaration: ImportFactory = (
+export const declareImport = (
+  declaration?: string
+): ImportFactory => (
   filename: string
 ) => createImportDeclaration(
   undefined,
   undefined,
-  createImportClause(
-    createIdentifier('render'),
+  declaration ? createImportClause(
+    createIdentifier(declaration),
     undefined
-  ),
-  literal(`./${filename}`)
-);
-
-export const importStyleDeclaration: ImportFactory = (
-  filename: string
-) => createImportDeclaration(
-  undefined,
-  undefined,
-  undefined,
+  ) : undefined,
   literal(`./${filename}`)
 );
 
