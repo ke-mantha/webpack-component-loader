@@ -18,3 +18,5 @@ export const optionsWithDefaults = (options: OptionObject & Options) => {
 
   return options;
 }
+
+export const defaultRenderFactory = 'render';

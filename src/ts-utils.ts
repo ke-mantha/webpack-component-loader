@@ -18,6 +18,7 @@ import {
   ImportDeclaration,
   updateSourceFileNode
 } from 'typescript';
+import { defaultRenderFactory } from './defaults';
 
 export const literal = (...args: Parameters<typeof createLiteral>) => {
   const result = createLiteral(...args);
@@ -63,7 +64,7 @@ export const createFile = (source: string) => createSourceFile(
 
 export const wrapDefaultExportNode = (node: Node) => createExportDefault(
   createCall(
-    createIdentifier('render'),
+    createIdentifier(defaultRenderFactory),
     undefined,
     [node as Expression]
   )

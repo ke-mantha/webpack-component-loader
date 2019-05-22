@@ -2,7 +2,7 @@ import { existsSync } from 'fs';
 import { join } from 'path';
 import { validateOptions } from './options';
 import { loader } from 'webpack';
-import { optionsWithDefaults } from './defaults';
+import { optionsWithDefaults, defaultRenderFactory } from './defaults';
 
 import {
   declareImport,
@@ -20,7 +20,7 @@ export default function (this: loader.LoaderContext, source: string) {
   const { viewFileName, styleFileName } = optionsWithDefaults(options);
   const importStatements = generateImportDeclarations(
     [styleFileName, viewFileName],
-    [declareImport(), declareImport('render')],
+    [declareImport(), declareImport(defaultRenderFactory)],
     fileExists
   );
 
