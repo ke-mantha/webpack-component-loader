@@ -10,7 +10,7 @@ function default_1(source) {
     var options = options_1.validateOptions.call(this, 'Mantha component loader');
     var fileExists = function (filename) { return fs_1.existsSync(path_1.join(_this.context, filename)); };
     var _a = defaults_1.optionsWithDefaults(options), viewFileName = _a.viewFileName, styleFileName = _a.styleFileName;
-    var importStatements = ts_utils_1.generateImportDeclarations([styleFileName, viewFileName], [ts_utils_1.importStyleDeclaration, ts_utils_1.importRenderDeclaration], fileExists);
+    var importStatements = ts_utils_1.generateImportDeclarations([styleFileName, viewFileName], [ts_utils_1.declareImport(), ts_utils_1.declareImport(defaults_1.defaultRenderFactory)], fileExists);
     // Return original file if no imports need to be added
     if (importStatements.length === 0) {
         return source;

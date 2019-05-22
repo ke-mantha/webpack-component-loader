@@ -15,4 +15,5 @@ exports.optionsWithDefaults = function (options) {
     options.viewFileName = options.viewFileName + options.viewFileExt;
     return options;
 };
+exports.defaultRenderFactory = 'render';
 //# sourceMappingURL=defaults.js.map

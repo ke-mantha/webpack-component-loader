@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var typescript_1 = require("typescript");
+var defaults_1 = require("./defaults");
 exports.literal = function () {
     var args = [];
     for (var _i = 0; _i < arguments.length; _i++) {
@@ -10,8 +11,7 @@ exports.literal = function () {
     result.singleQuote = true;
     return result;
 };
-exports.importRenderDeclaration = function (filename) { return typescript_1.createImportDeclaration(undefined, undefined, typescript_1.createImportClause(typescript_1.createIdentifier('render'), undefined), exports.literal("./" + filename)); };
-exports.importStyleDeclaration = function (filename) { return typescript_1.createImportDeclaration(undefined, undefined, undefined, exports.literal("./" + filename)); };
+exports.declareImport = function (declaration) { return function (filename) { return typescript_1.createImportDeclaration(undefined, undefined, declaration ? typescript_1.createImportClause(typescript_1.createIdentifier(declaration), undefined) : undefined, exports.literal("./" + filename)); }; };
 exports.generateImportDeclarations = function (files, factories, fileExists) {
     if (fileExists === void 0) { fileExists = function (_) { return true; }; }
     return files.reduce(function (arr, file, idx) {
@@ -22,7 +22,7 @@ exports.generateImportDeclarations = function (files, factories, fileExists) {
     }, []);
 };
 exports.createFile = function (source) { return typescript_1.createSourceFile('index.ts', source, typescript_1.ScriptTarget.ESNext, true, typescript_1.ScriptKind.TS); };
-exports.wrapDefaultExportNode = function (node) { return typescript_1.createExportDefault(typescript_1.createCall(typescript_1.createIdentifier('render'), undefined, [node])); };
+exports.wrapDefaultExportNode = function (node) { return typescript_1.createExportDefault(typescript_1.createCall(typescript_1.createIdentifier(defaults_1.defaultRenderFactory), undefined, [node])); };
 exports.printer = typescript_1.createPrinter({
     omitTrailingSemicolon: false,
     removeComments: false
