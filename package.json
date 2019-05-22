@@ -26,6 +26,9 @@
   "bugs": {
     "url": "https://github.com/ke-mantha/webpack-component-loader/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "@types/loader-utils": "^1.1.3",
