@@ -8,7 +8,15 @@ var ts_utils_1 = require("./ts-utils");
 function default_1(source) {
     var _this = this;
     var options = options_1.validateOptions.call(this, 'Mantha component loader');
-    var fileExists = function (filename) { return fs_1.existsSync(path_1.join(_this.context, filename)); };
+    var fileExists = function (filename) {
+        try {
+            return fs_1.existsSync(path_1.join(_this._module.context, filename));
+        }
+        catch (error) {
+            console.error(error);
+            return false;
+        }
+    };
     var _a = defaults_1.optionsWithDefaults(options), viewFileName = _a.viewFileName, styleFileName = _a.styleFileName;
     var importStatements = ts_utils_1.generateImportDeclarations([styleFileName, viewFileName], [ts_utils_1.declareImport(), ts_utils_1.declareImport(defaults_1.defaultRenderFactory)], fileExists);
     // Return original file if no imports need to be added
