@@ -14,46 +14,41 @@ import {
 } from './ts-utils';
 
 export default function (this: loader.LoaderContext, source: string) {
-  try {
-    const options = validateOptions.call(this, 'Mantha component loader');
-    const fileExists = (filename: string) => {
-      try {
-        return existsSync(join(this._module.context, filename));
-      } catch (error) {
-        console.error(error);
-        return false;
-      }
+  const options = validateOptions.call(this, 'Mantha component loader');
+  const fileExists = (filename: string) => {
+    try {
+      return existsSync(join(this._module.context, filename));
+    } catch (error) {
+      console.error(error);
+      return false;
     }
+  }
 
-    const { viewFileName, styleFileName } = optionsWithDefaults(options);
-    const importStatements = generateImportDeclarations(
-      [styleFileName, viewFileName],
-      [declareImport(), declareImport(defaultRenderFactory)],
-      fileExists
-    );
+  const { viewFileName, styleFileName } = optionsWithDefaults(options);
+  const importStatements = generateImportDeclarations(
+    [styleFileName, viewFileName],
+    [declareImport(), declareImport(defaultRenderFactory)],
+    fileExists
+  );
 
-    // Return original file if no imports need to be added
-    if (importStatements.length === 0) {
-      return source;
-    }
-
-    const sourceFile = createFile(source);
-    const defaultExport = findDefaultExport(sourceFile);
-
-    // Return original file if no default export is found
-    if (!defaultExport) {
-      return sourceFile;
-    }
-
-    return printer.printFile(
-      updateSourceWith({
-        sourceFile,
-        importStatements,
-        inject: defaultExport
-      })
-    );
-  } catch (error) {
-    console.error(error);
+  // Return original file if no imports need to be added
+  if (importStatements.length === 0) {
     return source;
   }
+
+  const sourceFile = createFile(source);
+  const defaultExport = findDefaultExport(sourceFile);
+
+  // Return original file if no default export is found
+  if (!defaultExport) {
+    return sourceFile;
+  }
+
+  return printer.printFile(
+    updateSourceWith({
+      sourceFile,
+      importStatements,
+      inject: defaultExport
+    })
+  );
 }
