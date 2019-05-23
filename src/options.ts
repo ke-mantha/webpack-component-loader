@@ -28,7 +28,9 @@ export const schema = {
 export function validateOptions(errorMsg: string) {
   const options = getOptions(this) as Options & OptionObject;
 
-  validateSchemaOptions(schema, options, errorMsg);
+  if (options) {
+    validateSchemaOptions(schema, options, errorMsg);
+  }
 
   return options;
 }
