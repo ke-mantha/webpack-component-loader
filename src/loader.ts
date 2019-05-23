@@ -15,7 +15,14 @@ import {
 
 export default function (this: loader.LoaderContext, source: string) {
   const options = validateOptions.call(this, 'Mantha component loader');
-  const fileExists = (filename: string) => existsSync(join(this.context, filename));
+  const fileExists = (filename: string) => {
+    try {
+      return existsSync(join(this._module.context, filename));
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }
 
   const { viewFileName, styleFileName } = optionsWithDefaults(options);
   const importStatements = generateImportDeclarations(
