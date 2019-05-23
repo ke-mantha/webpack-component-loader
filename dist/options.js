@@ -24,7 +24,9 @@ exports.schema = {
 };
 function validateOptions(errorMsg) {
     var options = loader_utils_1.getOptions(this);
-    schema_utils_1.default(exports.schema, options, errorMsg);
+    if (options) {
+        schema_utils_1.default(exports.schema, options, errorMsg);
+    }
     return options;
 }
 exports.validateOptions = validateOptions;
