@@ -1,5 +1,6 @@
 import validateSchemaOptions from 'schema-utils';
 import { getOptions, OptionObject } from 'loader-utils';
+import { defaults } from './defaults';
 
 export type SchemaKeys = keyof typeof schema['properties'];
 
@@ -26,10 +27,12 @@ export const schema = {
 };
 
 export function validateOptions(errorMsg: string) {
-  const options = getOptions(this) as Options & OptionObject;
+  let options = getOptions(this) as Options & OptionObject;
 
   if (options) {
     validateSchemaOptions(schema, options, errorMsg);
+  } else {
+    options = defaults;
   }
 
   return options;
