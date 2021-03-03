@@ -41,7 +41,7 @@
     "ts-node": "^8.1.0",
     "typescript": "^3.4.5",
     "webpack": "^4.32.0",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "vue-template-compiler": "^2.6.10",
     "vue-template-loader": "^1.0.0"
